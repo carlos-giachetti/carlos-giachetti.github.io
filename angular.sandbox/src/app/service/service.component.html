@@ -1,0 +1,18 @@
+<div class="container">
+
+  <h2 class="ui header">Service with Dependency Injection</h2>
+
+  <div class="container">
+    <label>this.contentService.content</label>
+    <div>{{ this.contentService.content == '' ? '(empty)' : this.contentService.content }}</div>
+
+    <br>
+
+    <label for="someContent">New content to apply</label><br>
+    <input id="someContent" type="text" value="{{ this.contentService.content }}" #someContentToApply />
+
+    <br>
+
+    <button class="white" (click)="setSomeContent(someContentToApply)">Set some content</button>
+  </div>
+</div>

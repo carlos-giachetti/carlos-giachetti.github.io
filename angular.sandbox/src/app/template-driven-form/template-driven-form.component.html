@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Template-driven Form with ngForm</h2>
+
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+    <div>
+      <label for="skuInput">SKU</label><br>
+      <input type="text" id="skuInput" placeholder="SKU" name="sku" ngModel />
+    </div>
+
+    <div>
+      <label for="descriptionInput">Description</label><br>
+      <input type="text" id="descriptionInput" placeholder="Description" name="description" ngModel />
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>

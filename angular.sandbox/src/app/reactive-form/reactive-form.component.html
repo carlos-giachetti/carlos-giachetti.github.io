@@ -1,0 +1,40 @@
+<div class="container">
+
+  <h2 class="ui header">Reactive Form with FormBuilder</h2>
+
+  <!-- To avoid error when using [formGroup], do the following:              -->
+  <!--   1. Stop ng serve;                                                   -->
+  <!--   2. In tsconfig.json , turn off "strictTemplates" (set it to false); -->
+  <!--   3. Restart ng serve , to build the entire application again.        -->
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+
+    <div class="validationError general" *ngIf="!myForm.valid && myForm.touched">Please, fix the indicated errors.</div>
+
+    <div>
+      <label for="skuInput">SKU</label><br>
+      <input type="text" id="skuInput" placeholder="SKU" [formControl]="sku" />
+      <!-- <div class="validationError detail" *ngIf="!sku.valid && sku.touched">Inform the SKU.</div> -->
+      <div class="validationError detail" *ngIf="sku.touched && sku.hasError('required')">Inform the SKU.</div>
+      <div class="validationError detail" *ngIf="sku.touched && (!sku.hasError('required')) && sku.hasError('invalidSku')">SKU must begin with 123</div>
+    </div>
+
+    <div>
+      <label for="descriptionInput">Description</label><br>
+      <input type="text" id="descriptionInput" placeholder="Description" [formControl]="description" />
+      <div class="validationError detail" *ngIf="description.hasError('required') && description.touched">Inform the description.</div>
+    </div>
+
+    <button *ngIf="!myForm.valid" disabled>Submit</button>
+    <button *ngIf="myForm.valid"  type="submit">Submit</button>
+
+    <br>
+    <div>
+      <label for="productNameInput">Product name</label><br>
+      <input type="text" id="productNameInput" placeholder="Product name" name="productName" [(ngModel)]="productName" [ngModelOptions]="{standalone: true}"/>
+    </div>
+
+    <div>Member variable 'productName' (two-way data binding): {{ productName }}</div>
+
+  </form>
+
+</div>
